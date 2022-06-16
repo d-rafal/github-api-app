@@ -1,10 +1,10 @@
 import { Alert, Box } from "@mui/material";
-import { CustomError } from "../../utilities/customError";
+import { ReportedException } from "../../@types-and-const/@general";
 
 interface Props {
-  customError: CustomError;
+  reportedException: ReportedException;
 }
-const MessageForUserIndicator = ({ customError }: Props) => {
+const MessageForUserIndicator = ({ reportedException }: Props) => {
   return (
     <Box
       sx={{
@@ -16,10 +16,10 @@ const MessageForUserIndicator = ({ customError }: Props) => {
     >
       <Alert
         variant="filled"
-        severity={customError.getType()}
+        severity={reportedException.type}
         sx={{ marginTop: "3rem" }}
       >
-        {customError.getMessageForUser()}
+        {reportedException.messageForUser}
       </Alert>
     </Box>
   );

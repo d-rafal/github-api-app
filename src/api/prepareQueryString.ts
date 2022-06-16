@@ -1,4 +1,4 @@
-import { CustomError } from "../utilities/customError";
+import { AppException } from "../utilities/appException";
 import { ApiEndpointQueries } from "./fetchSearchResult";
 
 const WRONG_QUERY_PARAMS_MESSAGE = "wrong query parameters!";
@@ -9,9 +9,9 @@ export const prepareQueryString = (
   let searchQuery = "";
 
   if (!apiEndpointQueryParams.searchPhrase) {
-    throw new CustomError(WRONG_QUERY_PARAMS_MESSAGE, "Brak szukanej frazy.");
+    throw new AppException(WRONG_QUERY_PARAMS_MESSAGE, "Brak szukanej frazy.");
   } else if (!apiEndpointQueryParams.searchUserName) {
-    throw new CustomError(
+    throw new AppException(
       WRONG_QUERY_PARAMS_MESSAGE,
       "Brak nazwy użytkownika, którego repozytoria mają być przeszukane."
     );

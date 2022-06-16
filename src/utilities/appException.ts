@@ -1,15 +1,15 @@
-export type CustomErrorType = "error" | "warning" | "info";
+import { ReportedExceptionCharacterType } from "../@types-and-const/@general";
 
-export class CustomError extends Error {
+export class AppException extends Error {
   constructor(
     message: string,
     private _messageForUser: string = "Wystąpił Błąd!",
-    private _type: CustomErrorType = "error"
+    private _type: ReportedExceptionCharacterType = "error"
   ) {
     super(message);
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, CustomError);
+      Error.captureStackTrace(this, AppException);
     }
   }
 

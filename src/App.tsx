@@ -1,7 +1,7 @@
 import { Box, Container, Paper } from "@mui/material";
 import AppBar from "./components/app-bar/AppBar";
 import CodeSearchInGithub from "./components/code-search-in-github/CodeSearchInGithub";
-import SearchResultProvider from "./components/search-result-provider/SearchResultProvider";
+import SearchingStatusProvider from "./components/search-result-provider/SearchResultProvider";
 
 function App() {
   return (
@@ -15,9 +15,9 @@ function App() {
           padding: "1rem 1rem 2rem",
         }}
       >
-        <SearchResultProvider>
+        <SearchingStatusProvider>
           <CodeSearchInGithub />
-        </SearchResultProvider>
+        </SearchingStatusProvider>
       </Container>
     </Box>
   );

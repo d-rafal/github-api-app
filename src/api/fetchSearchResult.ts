@@ -4,7 +4,7 @@ import {
   BAD_RESPONSE_FROM_SERVER_MESSAGE_FOR_USER,
   SearchResult,
 } from "../@types-and-const/search-result";
-import { CustomError } from "../utilities/customError";
+import { AppException } from "../utilities/appException";
 import { extractFoundItems as extractFoundItemsFromResponse } from "./extractFoundItemsFromResponse";
 import extractLastPageFromResponse from "./extractLastPageFromResponse";
 import { prepareQueryString } from "./prepareQueryString";
@@ -35,21 +35,21 @@ export const fetchSearchResult = async (
     const res = await fetch("/search/code" + queryString, fetchOptions);
 
     if (res.status === 422) {
-      throw new CustomError(
+      throw new AppException(
         `HTTP error! status: ${res.status}`,
         "Nie ma takiego użytkownika w serwise GitHub."
       );
     }
 
     if (res.status === 403) {
-      throw new CustomError(
+      throw new AppException(
         `HTTP error! status: ${res.status}`,
         "Przekroczono limit zapytań do serwera, spróbuj ponownie za jakiś czas."
       );
     }
 
     if (!res.ok) {
-      throw new CustomError(
+      throw new AppException(
         `HTTP error! status: ${res.status}`,
         BAD_RESPONSE_FROM_SERVER_MESSAGE_FOR_USER
       );
@@ -57,7 +57,7 @@ export const fetchSearchResult = async (
 
     const contentType = res.headers.get("content-type");
     if (!contentType || !contentType.includes("application/json")) {
-      throw new CustomError(
+      throw new AppException(
         "Response not in JSON format!",
         BAD_RESPONSE_FROM_SERVER_MESSAGE_FOR_USER
       );

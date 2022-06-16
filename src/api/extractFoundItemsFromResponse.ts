@@ -2,7 +2,7 @@ import {
   BAD_RESPONSE_FROM_SERVER_MESSAGE_FOR_USER,
   FoundItem,
 } from "../@types-and-const/search-result";
-import { CustomError } from "../utilities/customError";
+import { AppException } from "../utilities/appException";
 
 export const extractFoundItems = (data: any): never | FoundItem[] => {
   const foundItems: FoundItem[] = [];
@@ -24,7 +24,7 @@ export const extractFoundItems = (data: any): never | FoundItem[] => {
 
     return foundItems;
   } catch (error) {
-    throw new CustomError(
+    throw new AppException(
       (error as Error).message,
       BAD_RESPONSE_FROM_SERVER_MESSAGE_FOR_USER
     );

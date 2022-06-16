@@ -1,4 +1,3 @@
-import { CustomError } from "../../../utilities/customError";
 import LoadingIndicator from "../../loading-indicator/LoadingIndicator";
 import MessageForUserIndicator from "../../message-for-user-indicator/MessageForUserIndicator";
 import { useSearchingStatusContext } from "../../search-result-provider/SearchResultProvider";
@@ -7,24 +6,23 @@ import TableWithResults from "./TableWithResults";
 const ResultSection = () => {
   const searchingStatus = useSearchingStatusContext();
 
-  if (searchingStatus.actionStatus === "FAILED") {
+  if (searchingStatus.actionStatus.status === "FAILED") {
     return (
-      <MessageForUserIndicator customError={searchingStatus.customError} />
+      <MessageForUserIndicator
+        reportedException={searchingStatus.actionStatus.reportedException}
+      />
     );
-  } else if (searchingStatus.actionStatus === "PROCESSING") {
+  } else if (searchingStatus.actionStatus.status === "PROCESSING") {
     return <LoadingIndicator />;
-  } else if (searchingStatus.actionStatus === "SUCCEEDED") {
+  } else if (searchingStatus.actionStatus.status === "SUCCEEDED") {
     return searchingStatus.searchResult?.items.length ? (
       <TableWithResults foundItems={searchingStatus.searchResult?.items} />
     ) : (
       <MessageForUserIndicator
-        customError={
-          new CustomError(
-            "",
-            "Brak rezultów dla podanych kryteriów wyszukiwania.",
-            "info"
-          )
-        }
+        reportedException={{
+          messageForUser: "Brak rezultów dla podanych kryteriów wyszukiwania.",
+          type: "info",
+        }}
       />
     );
   } else return null;

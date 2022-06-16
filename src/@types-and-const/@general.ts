@@ -1,10 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 
+export type ReportedExceptionCharacterType = "error" | "warning" | "info";
+export interface ReportedException {
+  messageForUser: string;
+  type: ReportedExceptionCharacterType;
+}
+
 export type ActionStatus =
-  | "PROCESSING"
-  | "FAILED"
-  | "SUCCEEDED"
-  | "INITIAL_STATE";
+  | { status: "INITIAL_STATE" | "PROCESSING" | "SUCCEEDED" }
+  | {
+      status: "FAILED";
+      reportedException: ReportedException;
+    };
 
 export type RetrieveArrayElementType<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never;

@@ -1,4 +1,4 @@
-import tryConvertToFiniteNumber from "../utilities/tryConvertToFiniteNumber";
+import tryConvertToFiniteNumberNullAsZero from "../utilities/tryConvertToFiniteNumberNullAsZero";
 
 /**
  * This function tries to retrieves last page number from link header in response from github api, if operation is not successful, returns null
@@ -13,7 +13,7 @@ const extractLastPageFromResponse = (res: Response) => {
   if (linkHeader) {
     const match = linkHeader.match(/<.*(?<!per_)page=([^&]+).*?>; rel="last"/);
 
-    lastPage = tryConvertToFiniteNumber(match?.[1]);
+    lastPage = tryConvertToFiniteNumberNullAsZero(match?.[1]);
   }
 
   return lastPage;

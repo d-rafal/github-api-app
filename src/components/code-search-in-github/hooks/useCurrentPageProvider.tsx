@@ -1,8 +1,8 @@
 import { PAGE_QUERY_IN_URL_KEY_NAME } from "../../../@types-and-const/@url-queries/@page";
-import tryConvertToFiniteNumber from "../../../utilities/tryConvertToFiniteNumber";
+import tryConvertToFiniteNumberNullAsZero from "../../../utilities/tryConvertToFiniteNumberNullAsZero";
 
 const useCurrentPageProvider = (searchParams: URLSearchParams) => {
-  let currentPage = tryConvertToFiniteNumber(
+  let currentPage = tryConvertToFiniteNumberNullAsZero(
     searchParams.get(PAGE_QUERY_IN_URL_KEY_NAME)
   );
   if (currentPage === null || currentPage <= 0) currentPage = 1;

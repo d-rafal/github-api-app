@@ -7,7 +7,7 @@ import { useLayoutEffect, useState } from "react";
  * @returns the same as useState
  */
 const useValueDependsOnUrl = <I,>(valueInUrl: I) => {
-  const [value, setValue] = useState(() => valueInUrl);
+  const [value, setValue] = useState(valueInUrl);
 
   // updating values when url manually changed
   useLayoutEffect(() => {

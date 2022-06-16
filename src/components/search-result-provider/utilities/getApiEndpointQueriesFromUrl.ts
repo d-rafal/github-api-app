@@ -9,7 +9,7 @@ import {
 } from "../../../@types-and-const/@url-queries/@language";
 import { PHRASE_QUERY_IN_URL_KEY_NAME } from "../../../@types-and-const/@url-queries/@phrase";
 import { OWNER_NAME_QUERY_IN_URL_KEY_NAME } from "../../../@types-and-const/@url-queries/@user-name";
-import tryConvertToFiniteNumber from "../../../utilities/tryConvertToFiniteNumber";
+import tryConvertToFiniteNumberNullAsZero from "../../../utilities/tryConvertToFiniteNumberNullAsZero";
 import { valueFromUrlQueryTypeGuard } from "../../../utilities/valueFromUrlQueryTypeGuard";
 import { ApiEndpointQueries } from "../../../api/fetchSearchResult";
 import { PAGE_QUERY_IN_URL_KEY_NAME } from "../../../@types-and-const/@url-queries/@page";
@@ -23,7 +23,7 @@ export const getApiEndpointQueriesFromUrl = (
     isValidItemsPerPageQueryInURL
   );
 
-  let page = tryConvertToFiniteNumber(
+  let page = tryConvertToFiniteNumberNullAsZero(
     searchParams.get(PAGE_QUERY_IN_URL_KEY_NAME)
   );
   if (!page || page < 0) {
