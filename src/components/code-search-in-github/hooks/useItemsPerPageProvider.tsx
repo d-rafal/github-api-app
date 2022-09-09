@@ -7,13 +7,13 @@ import {
   ITEMS_PER_PAGE_QUERY_IN_URL_KEY_NAME,
 } from "../../../@types-and-const/@url-queries/@items-per-page";
 import { PAGE_QUERY_IN_URL_KEY_NAME } from "../../../@types-and-const/@url-queries/@page";
-import { valueFromUrlQueryTypeGuard } from "../../../utilities/valueFromUrlQueryTypeGuard";
+import { getValueFromUrlQueryTypeGuard } from "../../../utilities/getValueFromUrlQueryTypeGuard";
 
 const useItemsPerPageProvider = (
   searchParams: URLSearchParams,
   setSearchParams: SetSearchParams
 ) => {
-  const itemsPerPage = valueFromUrlQueryTypeGuard(
+  const itemsPerPage = getValueFromUrlQueryTypeGuard(
     searchParams.get(ITEMS_PER_PAGE_QUERY_IN_URL_KEY_NAME),
     DEFAULT_ITEMS_PER_PAGE,
     isValidItemsPerPageQueryInURL

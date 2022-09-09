@@ -2,6 +2,7 @@ import {
   createTheme,
   PaletteMode,
   responsiveFontSizes,
+  ThemeOptions,
   ThemeProvider,
   useMediaQuery,
 } from "@mui/material";
@@ -18,7 +19,8 @@ declare module "@mui/material/styles" {
   }
 }
 
-const getDesignTokens = (mode: PaletteMode) => ({
+const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
+  spacing: (factor: number) => `${0.25 * factor}rem`, // Bootstrap strategy
   palette: {
     mode,
     ...(mode === "light"
